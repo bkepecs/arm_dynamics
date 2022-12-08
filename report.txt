@@ -1,0 +1,18 @@
+My data collection policy was as follows:
+For the 1 link arm, I collected 500000 samples where the angle for the arm
+ranged between (-3.14,0), the velocity ranged between (-6,6), and the action torque ranged between (-2,2).
+For the 2 link arm, I collected 50000 samples where the angles for the arms ranged between (-3,1.3), the velocity ranged between (-6,6), and the action torque ranged between (-2,1.2).
+For the 3 link arm, I collected 90000 samples where the angles for the arms ranged between (-3,1.3), the velocity ranged between (-6,5), and the action torque ranged between (-2,1.4).
+
+The network architecture was different for each arm with a different number of
+links. For the 1 link case, it accepted 3-dimension input and had 5 feedforward layers with 32 nodes each. For the 2 link case, it accepted 6-dimensional input
+and had 7 layers of 32 nodes each. For the 3 link case, it accepted 9-dimension
+input and has 7 layer, with 256 nodes in the first, 128 in the next two layers, and 64 in the last two.
+I used MSELoss and the Adam optimizer for training.
+
+For the 1 link arm, the best model was found at epoch 300 and had testing loss
+of 0.0099830.
+For the 2 link arm, the best model was found at epoch 27 and had loss 0.00009949.
+For the 3 link arm, the best model was found at epoch 1000 and had loss 0.00016739.
+
+The loss was calculated a bit differently for each model (I followed the official pytorch tutorial in setting up my pipeline and they calculated loss this way). I wasn't able to get test 2 for 3 link arm with learned dynamics working, but it's VERY close.
